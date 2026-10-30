@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator with History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculator-wrapper">
+        
+        <!-- Main Calculator -->
+        <div class="calculator" role="application" aria-label="Calculator">
+            
+            <!-- Display Screen -->
+            <div class="display">
+                <button class="history-toggle" id="history-toggle" aria-label="Toggle History">
+                    &#9776; <!-- Hamburger Menu Icon -->
+                </button>
+                <div class="previous-operand" id="previous-operand" aria-hidden="true"></div>
+                <div class="current-operand" id="current-operand" aria-live="polite"></div>
+            </div>
+
+            <!-- Buttons Grid -->
+            <div class="buttons">
+                <button class="btn span-2 action" data-action="clear">AC</button>
+                <button class="btn action" data-action="delete">DEL</button>
+                <button class="btn operator" data-operator="÷">÷</button>
+
+                <button class="btn number" data-number="7">7</button>
+                <button class="btn number" data-number="8">8</button>
+                <button class="btn number" data-number="9">9</button>
+                <button class="btn operator" data-operator="×">×</button>
+
+                <button class="btn number" data-number="4">4</button>
+                <button class="btn number" data-number="5">5</button>
+                <button class="btn number" data-number="6">6</button>
+                <button class="btn operator" data-operator="-">-</button>
+
+                <button class="btn number" data-number="1">1</button>
+                <button class="btn number" data-number="2">2</button>
+                <button class="btn number" data-number="3">3</button>
+                <button class="btn operator" data-operator="+">+</button>
+
+                <button class="btn number span-2" data-number="0">0</button>
+                <button class="btn number" data-number=".">.</button>
+                <button class="btn equals" data-action="calculate">=</button>
+            </div>
+        </div>
+
+        <!-- History Panel -->
+        <div class="history-panel" id="history-panel">
+            <div class="history-header">
+                <h3>History</h3>
+                <button class="clear-history-btn" id="clear-history-btn" aria-label="Clear History">Clear</button>
+            </div>
+            <ul class="history-list" id="history-list">
+                <!-- History items will be populated by JS -->
+                <li class="empty-history">No calculations yet.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Music Player</title>
+    <link rel="stylesheet" href="music-style.css">
+</head>
+<body>
+
+    <div class="music-player">
+        <div class="player-header">Now Playing</div>
+        
+        <!-- Album Art -->
+        <div class="img-container">
+            <img src="https://images.unsplash.com/photo-1493225457124-a1a2a5f5646a?w=500&h=500&fit=crop" alt="Album Art" id="cover-img">
+        </div>
+
+        <!-- Song Info -->
+        <div class="song-info">
+            <h2 id="title">Song Title</h2>
+            <h3 id="artist">Artist Name</h3>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="time-info">
+            <span id="current-time">0:00</span>
+            <span id="duration">0:00</span>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn" id="prev" aria-label="Previous Song">&#10094;&#10094;</button>
+            <button class="control-btn play-btn" id="play" aria-label="Play Song">&#9654;</button>
+            <button class="control-btn" id="next" aria-label="Next Song">&#10095;&#10095;</button>
+        </div>
+
+        <!-- Volume & Autoplay -->
+        <div class="volume-container">
+            <span class="volume-icon">&#128266;</span>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+            <label class="autoplay-toggle">
+                <input type="checkbox" id="autoplay"> Auto
+            </label>
+        </div>
+
+        <!-- Playlist -->
+        <div class="playlist-container">
+            <h4>Up Next</h4>
+            <ul id="playlist">
+                <!-- Populated by JS -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="music-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+:root {
+    --bg-color: #1e293b;
+    --calc-bg: #0f172a;
+    --display-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
+    --operator-color: #3b82f6;
+    --operator-hover: #2563eb;
+    --equals-color: #10b981;
+    --equals-hover: #059669;
+    --action-color: #ef4444;
+    --action-hover: #dc2626;
+    --history-bg: #1e293b;
+    --history-item-bg: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* --- Wrapper to hold Calc + History side by side --- */
+.calculator-wrapper {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 800px;
+    width: 100%;
+    justify-content: center;
+}
+
+.calculator {
+    background-color: var(--calc-bg);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Display Screen --- */
+.display {
+    background-color: var(--display-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+    position: relative;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.history-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.history-toggle:hover { color: var(--text-main); }
+
+.previous-operand {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    min-height: 1.5rem;
+}
+
+.current-operand {
+    color: var(--text-main);
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* --- Buttons Grid --- */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    background-color: var(--btn-bg);
+    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 1.2rem 0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    user-select: none;
+}
+
+.btn:hover { background-color: var(--btn-hover); }
+.btn:active { transform: scale(0.95); }
+
+.span-2 { grid-column: span 2; }
+.operator { background-color: var(--operator-color); font-weight: bold; }
+.operator:hover { background-color: var(--operator-hover); }
+.equals { background-color: var(--equals-color); font-weight: bold; }
+.equals:hover { background-color: var(--equals-hover); }
+.action { background-color: var(--action-color); }
+.action:hover { background-color: var(--action-hover); }
+
+.btn:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
+/* --- History Panel Styles --- */
+.history-panel {
+    background-color: var(--history-bg);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    /* Initially hidden on small screens or when toggled off */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.history-panel.hidden-panel {
+    display: none;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--btn-bg);
+}
+
+.history-header h3 { color: var(--text-main); font-size: 1.2rem; }
+
+.clear-history-btn {
+    background: none;
+    border: none;
+    color: var(--action-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.clear-history-btn:hover { color: var(--action-hover); text-decoration: underline; }
+
+.history-list {
+    list-style: none;
+    overflow-y: auto;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-list li {
+    background-color: var(--history-item-bg);
+    color: var(--text-main);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.history-list li:hover { background-color: var(--btn-hover); }
+
+.history-list li .history-expression {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.history-list li .history-result {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.history-list .empty-history {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    background: none;
+    cursor: default;
+    font-style: italic;
+}
+.history-list .empty-history:hover { background: none; }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 750px) {
+    .calculator-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .history-panel {
+        width: 100%;
+        max-width: 400px;
+        /* Hide by default on mobile until toggled */
+        display: none; 
+    }
+    
+    .history-panel.active-mobile {
+        display: flex;
+    }
+}

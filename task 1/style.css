@@ -1,0 +1,241 @@
+/* --- CSS Variables --- */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-dark: rgba(15, 23, 42, 0.95);
+    --text-main: #1e293b;
+    --text-light: #f8fafc;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- General Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: var(--text-main);
+    padding: 2rem;
+    line-height: 1.5;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #0f172a;
+    font-weight: 800;
+}
+
+/* --- Filter Buttons --- */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #64748b;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    border-color: #cbd5e1;
+    color: var(--text-main);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+}
+
+/* --- Advanced Grid Layout --- */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: #e2e8f0;
+    
+    /* Prevents layout shift before image loads */
+    aspect-ratio: 4 / 3; 
+    
+    /* Smooth transition for filtering */
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* --- THE FIX: Hide filtered items completely --- */
+.gallery-item.hidden {
+    display: none !important;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+/* Hover Effects */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover::after,
+.gallery-item:focus-visible::after {
+    opacity: 1;
+}
+
+.gallery-item:hover img,
+.gallery-item:focus-visible img {
+    transform: scale(1.08);
+}
+
+.gallery-item:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* --- Lightbox Styles --- */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-dark);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+}
+
+#lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    transition: opacity 0.15s ease;
+}
+
+.caption {
+    color: var(--text-light);
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+/* --- Lightbox Controls --- */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--transition);
+    z-index: 1001;
+}
+
+.close-btn:hover { 
+    color: #94a3b8; 
+    transform: rotate(90deg); 
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: var(--transition);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+.nav-btn:hover { 
+    background: rgba(255, 255, 255, 0.3); 
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev { left: -70px; }
+.next { right: -70px; }
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    body { padding: 1rem; }
+    h1 { font-size: 2rem; }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .nav-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+    .close-btn { top: 10px; right: 15px; font-size: 2.5rem; }
+}

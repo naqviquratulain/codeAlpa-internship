@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Responsive Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Visual Portfolio</h1>
+        
+        <!-- Category Filters -->
+        <div class="filters" role="tablist" aria-label="Image Categories">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-btn" data-filter="nature" role="tab" aria-selected="false">Nature</button>
+            <button class="filter-btn" data-filter="city" role="tab" aria-selected="false">City</button>
+            <button class="filter-btn" data-filter="animals" role="tab" aria-selected="false">Animals</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Gallery Grid -->
+        <div class="gallery-container" id="gallery">
+            
+            <!-- Note: I updated the image URLs to match the categories properly for testing -->
+            
+            <div class="gallery-item" data-category="nature" tabindex="0" role="button" aria-label="View Forest landscape">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop" alt="Forest landscape" loading="lazy">
+            </div>
+            
+            <div class="gallery-item" data-category="city" tabindex="0" role="button" aria-label="View City skyline">
+                <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&h=400&fit=crop" alt="City skyline" loading="lazy">
+            </div>
+            
+            
+
+<div class="gallery-item" data-category="animals" tabindex="0" role="button" aria-label="View Wild tiger">
+    <img src="https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=600&h=400&fit=crop" alt="Wild tiger" loading="lazy">
+</div>
+            
+            <div class="gallery-item" data-category="nature" tabindex="0" role="button" aria-label="View Mountain view">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=400&fit=crop" alt="Mountain view" loading="lazy">
+            </div>
+            
+            <div class="gallery-item" data-category="city" tabindex="0" role="button" aria-label="View Urban architecture">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="Urban architecture" loading="lazy">
+            </div>
+            
+            <div class="gallery-item" data-category="animals" tabindex="0" role="button" aria-label="View Pet dog">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&h=400&fit=crop" alt="Pet dog" loading="lazy">
+            </div>
+
+            <div class="gallery-item" data-category="nature" tabindex="0" role="button" aria-label="View Ocean waves">
+                <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&h=400&fit=crop" alt="Ocean waves" loading="lazy">
+            </div>
+
+            <div class="gallery-item" data-category="animals" tabindex="0" role="button" aria-label="View Cute cat">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=400&fit=crop" alt="Cute cat" loading="lazy">
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="close-btn" aria-label="Close Lightbox">&times;</button>
+        
+        <button class="nav-btn prev" aria-label="Previous Image">&#10094;</button>
+        
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div class="caption" id="caption"></div>
+        </div>
+        
+        <button class="nav-btn next" aria-label="Next Image">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
